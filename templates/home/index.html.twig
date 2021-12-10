@@ -1,1 +1,34 @@
-<h1>Je suis la home !</h1>
+{% extends "layout/aside.html.twig" %}
+{% block stylesheet %}
+    {{ parent() }}
+{% endblock %}
+{% block javascript %}
+    {{ parent() }}
+{% endblock %}
+
+{% block aside %}
+    <aside>
+        <h1>Aside</h1>
+        <p>Visitez tous ces beaux liens :</p>
+        <ul>
+            <li><a href="">Semi-remorque</a></li>
+            <li><a href="">Bas de chemise</a></li>
+            <li><a href="">Arrosoir</a></li>
+            <li><a href="">Pomme</a></li>
+            <li><a href="">Jupiter</a></li>
+        </ul>
+        <p>N'est-ce pas que la vie est belle ? Vivement les semaines de quatre jours pour toute l'Europe.</p>
+    <aside>
+{% endblock %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <p> {{ content }} </p>
+    <span>Nous sommes le {{date|date("m/d/Y")}}</span>
+    <ul>
+        {% for d in data %}
+            <li>{{d}}</li>
+        {% endfor %}
+    </ul>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis totam aliquid quod quo, accusamus laudantium asperiores voluptates quae eveniet cupiditate corrupti fugiat nesciunt ipsum a vitae repudiandae rerum molestias? Ex.</p>
+{% endblock %}

@@ -2,10 +2,32 @@
 
 namespace App\Controller;
 
-class AboutController
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
+
+class AboutController extends AbstractController
 {
+    /**
+     * @Route("/about")
+     */
     public function index()
     {
-        die('About');
+        $params = 
+        [
+            'title' => 'About'
+        ];
+
+        $data =
+        [
+            'Lorem', 'Ipsum', 'Dolor', 'Sit', 'Amet'
+        ];
+
+        return $this->render(
+            'about/index.html.twig',
+            [
+                'title' => 'about',
+                'data' => $data
+            ]
+        );
     }
 }

@@ -1,7 +1,7 @@
-index: # nom de la route, utile pour créer des liens
-    path: / # ce que je retrouve dans l'url
-    controller: App\Controller\HomeController::index
+#index: # nom de la route, utile pour créer des liens
+#    path: / # ce que je retrouve dans l'url
+#    controller: App\Controller\HomeController::index
 
-about: # le nom peut être défini comme on veut !
-  path: /about
-  controller: App\Controller\AboutController::index
+#about: # le nom peut être défini comme on veut !
+#  path: /about
+#  controller: App\Controller\AboutController::index

@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {{parent()}}
+    <h1>About Twig</h1>
+
+    {{ title|upper }}
+
+    {#{ dump(data)}#}
+    <ul>
+        {% for d in data %}
+        <li>{{ d }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
