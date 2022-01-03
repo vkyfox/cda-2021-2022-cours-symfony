@@ -1,17 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AnnonceController!{% endblock %}
+{% block title %}Hello!{% endblock %}
 
 {% block body %}
-
-    {% for annonce in annonces %}
-        <li>ID: {{ annonce.id }}</li>
-        <li>Title: {{ annonce.title }}</li>
+        <h1>{{ annonce.id }}. {{ annonce.title }}</h1>
         <li>Description: {{ annonce.description }}</li>
         <li>Price: {{ annonce.price }}</li>
         <li>Is Sold: {{ annonce.isSold }}</li>
         <li>Status: {{ annonce.status }}</li>
         <li>Created at: {{ annonce.createdAt|date('d/m/y') }}</li>
-    {% endfor %}
 
 {% endblock %}

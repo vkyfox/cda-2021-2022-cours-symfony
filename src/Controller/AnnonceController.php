@@ -2,12 +2,40 @@
 
 namespace App\Controller;
 
+use App\Entity\Annonce;
+use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AnnonceController extends AbstractController
 {
+     /**
+     * @Route("/annonce/new")
+     */
+    public function new()
+    {
+        $annonce = new Annonce();
+        $annonce
+        ->setTitle('My NFT live duck collection')
+        ->setDescription("I'm selling because I want to invest")
+        ->setPrice(100)
+        ->setStatus(Annonce::STATUS_PERFECT)
+        ->setCreatedAt(new DateTimeImmutable())
+        ->setIsSold(false)
+        ;
+
+        dump($annonce);
+        $doctrine = $this->getdoctrine();
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($annonce);
+        $entityManager->flush();
+
+
+        dump($annonce);
+        die('nouvelle annonce');
+    }
+
     /**
      * @Route("/annonce", name="annonce", methods={"GET"})
      */
@@ -21,7 +49,15 @@ class AnnonceController extends AbstractController
      */
     public function annonceid($id)
     {
-        die("Annonce n°" . $id);
+        $doctrine = $this->getDoctrine();
+        $annonceRepository = $doctrine->getRepository(Annonce::class);
+        $annonce = $annonceRepository->find($id);
+        
+        return $this->render('annonce/show.html.twig',
+        [
+            'annonce' => $annonce
+        ]
+        );
     }
 
     /**
@@ -39,8 +75,22 @@ class AnnonceController extends AbstractController
     {
         die("Annonce " . $slug);
     }
-    public function index()
+    
+    /**
+     * @Route("/annonces", name="Annonces")
+     */
+
+    public function index(): Response
     {
-        return $this->render('annonce/index.html.twig');
+        $doctrine = $this->getDoctrine();
+        $annonceRepository = $doctrine->getRepository(Annonce::class);
+        $annonces = $annonceRepository->findAll();
+
+
+        return $this->render('annonce/index.html.twig',
+        [
+            'annonces' => $annonces
+        ]
+        );
     }
 }
